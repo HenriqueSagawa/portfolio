@@ -3,6 +3,7 @@ import { Header } from "@/components/header";
 import { About } from "@/components/about";
 import { Projects } from "@/components/projects";
 import { Technologies } from "@/components/technologies";
+import { Education } from "@/components/education";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <About />
         <Projects />
         <Technologies />
+        <Education />
       </main>
     </div>
   );
