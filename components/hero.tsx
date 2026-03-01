@@ -42,7 +42,7 @@ export function Hero() {
   }, [displayText, isDeleting, roleIndex]);
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 mt-12 lg:mt-0">
       {/* Subtle background grid */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.03]">
         <div
@@ -70,7 +70,7 @@ export function Hero() {
         {/* Text content */}
         <div className="flex-1 text-center lg:text-left">
           {/* Status badge */}
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-1.5">
+          <div className="hidden lg:inline-flex mb-8 items-center gap-2 rounded-full border border-border/50 bg-secondary/50 px-4 py-1.5">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
