@@ -190,7 +190,7 @@ export function Hero() {
                 alt="Henrique Sagawa - Desenvolvedor Full Stack"
                 fill
                 priority
-                className="object-cover object-top"
+                className="object-cover object-[25%_15%]"
                 sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 380px"
               />
               {/* Subtle cinematic vignette */}
@@ -201,30 +201,6 @@ export function Hero() {
 
             {/* Glass inner ring */}
             <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/6" />
-          </div>
-
-          {/* Floating tech badge */}
-          <div
-            className="absolute -right-3 top-8 flex items-center gap-1.5 rounded-full border border-border/50 bg-card/90 px-3 py-1.5 shadow-lg backdrop-blur-sm md:-right-6"
-            style={{ animation: "fade-in 1.2s ease-out 0.8s both" }}
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-            <span className="font-mono text-[11px] text-muted-foreground">
-              Full Stack
-            </span>
-          </div>
-
-          {/* Floating experience badge */}
-          <div
-            className="absolute -left-3 bottom-12 flex items-center gap-1.5 rounded-full border border-border/50 bg-card/90 px-3 py-1.5 shadow-lg backdrop-blur-sm md:-left-6"
-            style={{ animation: "fade-in 1.2s ease-out 1s both" }}
-          >
-            <span className="font-mono text-[11px] text-primary font-semibold">
-              3+
-            </span>
-            <span className="font-mono text-[11px] text-muted-foreground">
-              projetos
-            </span>
           </div>
 
           {/* Glow under photo on mobile */}
