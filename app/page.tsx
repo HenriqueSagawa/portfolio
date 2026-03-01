@@ -6,11 +6,13 @@ import { Technologies } from "@/components/technologies";
 import { Education } from "@/components/education";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
+import { ScrollTimeline } from "@/components/scroll-timeline";
 
 export default function Home() {
   return (
     <div>
       <Header />
+      <ScrollTimeline />
       <main>
         <Hero />
         <About />
