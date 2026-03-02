@@ -26,7 +26,7 @@ const contacts = [
     icon: Phone,
     label: "Telefone",
     value: "(44) 99805-0846",
-    href: "tel:+5544998050846",
+    href: "https://wa.me/554498050846",
   },
 ]
 
