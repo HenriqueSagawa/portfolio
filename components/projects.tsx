@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 import { ExternalLink, Github, ArrowUpRight } from "lucide-react"
 
@@ -40,10 +41,95 @@ const projects = [
       "Otimização SEO",
     ],
   },
+  {
+    title: "LembrePay",
+    description: "Aplicativo de celular para controle de assinaturas e pagamentos recorrentes com autenticação e persistência de dados.",
+    techs: ["React Native", "TypeScript", "Expo", "PostgreSQL", "Tailwind CSS", "Prisma ORM", "Node.js", "Express", "Docker"],
+    github: "https://github.com/HenriqueSagawa/LembrePay",
+    highlights: [
+      "Autenticação e persistência de dados",
+      "Arquitetura em camadas",
+      "Docker Compose",
+      "Lembretes diários para pagamento de assinaturas",
+      "Controle de assinaturas e pagamentos recorrentes",
+      "Interface intuitiva e responsiva",
+    ]
+  },
+  {
+    title: "Chatbot",
+    description: "Chatbot com IA para interação com o usuário e resposta a perguntas.",
+    techs: ["React", "TypeScript", "Node.js", "Express", "MongoDB"],
+    github: "https://github.com/HenriqueSagawa/chatbot-backend",
+    highlights: [
+      "Backend para chatbot com IA",
+      "Interação com o usuário",
+      "Resposta a perguntas",
+      "IA para resposta a perguntas com Google Ai Studio",
+      "Persistência de dados com MongoDB",
+      "Autenticação com JWT",
+      "Arquitetura em MVC",
+      "Previsão de clima com OpenWeather",
+    ]
+  },
+  {
+    title: "Webchat em tempo real",
+    description: "Webchat em tempo real com Django e WebSocket para comunicação entre cliente e servidor.",
+    techs: ["Python", "Django", "Socket.io", "SQLite", "Next.js", "Tailwind CSS", "TypeScript"],
+    github: "https://github.com/HenriqueSagawa/webchat-backend",
+    highlights: [
+      "Webchat em tempo real com Django e WebSocket",
+      "Comunicação entre cliente e servidor",
+      "Persistência de dados com SQLite",
+      "Autenticação com JWT",
+      "Arquitetura em MVC",
+      "Interface intuitiva e responsiva",
+    ]
+  },
+  {
+    title: "Vitrine de Projetos do IFPR",
+    description: "Vitrine de projetos do Instituto Federal do Paraná (IFPR) com Next.js para armezar projetos realizados pelos alunos de informática para internet.",
+    techs: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
+    github: "https://github.com/HenriqueSagawa/vitrine-projetos-ifpr",
+    highlights: [
+      "Persistência de dados com Firebase",
+      "Interface intuitiva e responsiva",
+      "Sistema de curtidas e comentários",
+      "Sistema de filtragem de projetos",
+    ]
+  },
+  {
+    title: "Gestão de aulas de violão",
+    description: "Gestão de aulas de violão com Next.js para gerenciar alunos, aulas e visualizer relatórios com IA",
+    techs: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
+    github: "https://github.com/HenriqueSagawa/ifarte",
+    highlights: [
+      "Persistência de dados com Firebase",
+      "Interface intuitiva e responsiva",
+      "Sistema de relatórios com IA",
+      "Sistema de gerenciamento de aulas",
+      "Sistema de gerenciamento de alunos",
+      "Chamada Online",
+    ]
+  }
 ]
+
+const INITIAL_VISIBLE = 3
 
 export function Projects() {
   const { ref, isVisible } = useScrollAnimation(0.1)
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE)
+
+  const visibleProjects = projects.slice(0, visibleCount)
+  const canShowMore = visibleCount < projects.length
+  const canShowLess = visibleCount > INITIAL_VISIBLE
+
+  function handleShowMore() {
+    setVisibleCount((prev) => Math.min(prev + 3, projects.length))
+  }
+
+  function handleShowLess() {
+    setVisibleCount(INITIAL_VISIBLE)
+  }
 
   return (
     <section id="projetos" className="relative px-6 py-24 md:py-32">
@@ -65,7 +151,7 @@ export function Projects() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
+          {visibleProjects.map((project, index) => (
             <article
               key={project.title}
               className="group relative flex flex-col overflow-hidden rounded-xl border border-border/50 bg-card/50 transition-all duration-500 hover:border-primary/20 hover:bg-card hover:shadow-xl hover:shadow-primary/5"
@@ -147,6 +233,31 @@ export function Projects() {
             </article>
           ))}
         </div>
+
+        {(canShowMore || canShowLess) && (
+          <div className="mt-10 flex justify-center gap-4">
+            {canShowMore && (
+              <button
+                type="button"
+                onClick={handleShowMore}
+                className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-6 py-2 text-sm font-medium text-primary transition-all hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                Ver mais
+                <ArrowUpRight size={14} />
+              </button>
+            )}
+
+            {canShowLess && (
+              <button
+                type="button"
+                onClick={handleShowLess}
+                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background px-6 py-2 text-sm font-medium text-muted-foreground transition-all hover:bg-secondary hover:text-foreground hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              >
+                Ver menos
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </section>
   )
